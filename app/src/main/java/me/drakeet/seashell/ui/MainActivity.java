@@ -157,7 +157,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
                             + mTodayWord.getSpeech() + "\n" + mTodayWord.getExplanation()
                             + "\n" + mTodayWord.getExample());
                 }
-
             }
         });
 
@@ -174,7 +173,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     private void initWord() {
         Map<String, String> map;
         Gson gson = new Gson();
-
         Context context = getApplicationContext();
         MySharedpreference sharedpreference = new MySharedpreference(context);
         map = sharedpreference.getWordJson();
@@ -182,12 +180,10 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         String yesterdayGsonString = map.get("yesterday_json");
         mTodayWord = gson.fromJson(todayGsonString, Word.class);
         mYesterdayWord = gson.fromJson(yesterdayGsonString, Word.class);
-
         //TODO
         Map<String, Object> map2;
         map2 = sharedpreference.getInfo();
         mTimesSting = "已更新 " + map2.get("honor") + " 次单词";
-
     }
 
     class MainViewPagerAdapter extends PagerAdapter {
@@ -225,16 +221,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
                 .MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
 
-//        for (int i = 0; i < 30; i++) {
-//            TableRow tableRow = new TableRow(this);
-//            TextView textView = new TextView(this);
-//            textView.setText("Test pull down scroll view " + i);
-//            textView.setTextSize(22);
-//            textView.setPadding(15, 15, 15, 15);
-//
-//            tableRow.addView(textView, layoutParams);
-//            mMainLayout.addView(tableRow);
-//        }
     }
 
     @Override
@@ -253,7 +239,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
                     Message msg = Message.obtain();
                     msg.obj = refreshJson;
                     handler.sendMessage(msg);
-                    }
+                }
             }
         }).start();
     }
@@ -277,8 +263,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     }
 
     public void onClickShare() {
-
-        Intent intent=new Intent(Intent.ACTION_SEND);
+        Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
@@ -290,7 +275,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     @Override
     protected void onMenuItemClicked(int position, Item item) {
         String title = item.mTitle;
-        if(title.equals("分享")) {
+        if (title.equals("分享")) {
             onClickShare();
         } else if (title.equals("关于")) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
@@ -304,11 +289,9 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.addCategory(Intent.CATEGORY_HOME);
             startActivity(i);
-        }
-        else {
+        } else {
             Toast.makeText(getApplicationContext(), item.mTitle + "暂未完成开发...", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
