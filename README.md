@@ -22,9 +22,9 @@ App store:
 我的博客：http://drakeet.me
 
 截图：
-![截图](/screenshots/s1.png)
-![截图](/screenshots/s2.png)
-![截图](/screenshots/s3.png)
-![截图](/screenshots/s4.png)
-![截图](/screenshots/s5.png)
-![截图](/screenshots/s6.png)
+<img src="/screenshots/s1.png?imageView/2/w/300/q/500" alt="" />
+<img src="/screenshots/s2.png?imageView/2/w/300/q/500" alt="" />
+<img src="/screenshots/s3.png?imageView/2/w/300/q/500" alt="" />
+<img src="/screenshots/s4.png?imageView/2/w/300/q/500" alt="" />
+<img src="/screenshots/s5.png?imageView/2/w/300/q/500" alt="" />
+<img src="/screenshots/s6.png?imageView/2/w/300/q/500" alt="" />
