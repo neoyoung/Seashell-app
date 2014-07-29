@@ -1,0 +1,16 @@
+<resources>
+
+    <style name="SampleBase" parent="android:Theme.Holo.NoActionBar">
+        <!--<item name="android:background">@drawable/title_image</item>-->
+    </style>
+
+    <style name="SampleTheme" parent="SampleBase">
+
+        <item name="menuDrawerStyle">@style/MenuDrawerStyle</item>
+    </style>
+
+    <style name="SampleTheme.BottomDrawer" parent="SampleBase">
+        <item name="menuDrawerStyle">@style/MenuDrawerStyle.Right</item>
+    </style>
+
+</resources>

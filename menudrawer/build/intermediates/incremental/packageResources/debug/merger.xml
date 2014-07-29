@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="X:\AndroidProject\Seashell\menudrawer\res" >
+            <file
+                path="X:\AndroidProject\Seashell\menudrawer\res\values\attrs.xml"
+                qualifiers="" >
+                <attr
+                    name="menuDrawerStyle"
+                    format="reference" />
+
+                <declare-styleable name="MenuDrawer" >
+
+                    <!-- Drawable to use for the background of the content. -->
+                    <attr
+                        name="mdContentBackground"
+                        format="reference" />
+
+                    <!-- Drawable to use for the background of the menu. -->
+                    <attr
+                        name="mdMenuBackground"
+                        format="reference" />
+
+                    <!-- The size of the menu. -->
+                    <attr
+                        name="mdMenuSize"
+                        format="dimension" />
+
+                    <!-- Drawable used as indicator for the active view. -->
+                    <attr
+                        name="mdActiveIndicator"
+                        format="reference" />
+
+                    <!-- Defines whether the content will have a dropshadow onto the menu. Default is true. -->
+                    <attr
+                        name="mdDropShadowEnabled"
+                        format="boolean" />
+
+                    <!-- The size of the drop shadow. Default is 6dp -->
+                    <attr
+                        name="mdDropShadowSize"
+                        format="dimension" />
+
+                    <!-- The color of the drop shadow. Default is #FF000000. -->
+                    <attr
+                        name="mdDropShadowColor"
+                        format="color" />
+
+                    <!-- Drawable used for the drop shadow. -->
+                    <attr
+                        name="mdDropShadow"
+                        format="reference" />
+
+                    <!-- The touch bezel size. -->
+                    <attr
+                        name="mdTouchBezelSize"
+                        format="dimension" />
+
+                    <!-- Whether the indicator should be animated between active views. -->
+                    <attr
+                        name="mdAllowIndicatorAnimation"
+                        format="boolean" />
+
+                    <!-- The maximum animation duration -->
+                    <attr
+                        name="mdMaxAnimationDuration"
+                        format="integer" />
+
+                    <!-- Drawable that replaces the up indicator -->
+                    <attr
+                        name="mdSlideDrawable"
+                        format="reference" />
+
+                    <!-- String to use as the up indicators content description when the drawer is open -->
+                    <attr
+                        name="mdDrawerOpenUpContentDescription"
+                        format="string" />
+
+                    <!-- String to use as the up indicators content description when the drawer is closed -->
+                    <attr
+                        name="mdDrawerClosedUpContentDescription"
+                        format="string" />
+
+                    <!-- Whether an overlay should be drawn as the drawer is opened and closed -->
+                    <attr
+                        name="mdDrawOverlay"
+                        format="boolean" />
+
+                    <!-- The position of the drawer -->
+                    <attr
+                        name="mdPosition"
+                        format="enum" >
+                        <enum
+                            name="left"
+                            value="0" />
+                        <enum
+                            name="top"
+                            value="1" />
+                        <enum
+                            name="right"
+                            value="2" />
+                        <enum
+                            name="bottom"
+                            value="3" />
+                        <enum
+                            name="start"
+                            value="4" />
+                        <enum
+                            name="end"
+                            value="5" />
+                    </attr>
+                </declare-styleable>
+            </file>
+            <file
+                path="X:\AndroidProject\Seashell\menudrawer\res\values\colors.xml"
+                qualifiers="" >
+                <color name="md__defaultBackground" >#FF555555
+                </color>
+            </file>
+            <file
+                path="X:\AndroidProject\Seashell\menudrawer\res\values\ids.xml"
+                qualifiers="" >
+                <item
+                    name="md__content"
+                    type="id"/>
+                <item
+                    name="md__translationX"
+                    type="id"/>
+                <item
+                    name="md__translationY"
+                    type="id"/>
+                <item
+                    name="md__drawer"
+                    type="id"/>
+                <item
+                    name="mdContent"
+                    type="id"/>
+                <item
+                    name="mdMenu"
+                    type="id"/>
+                <item
+                    name="md__menu"
+                    type="id"/>
+                <item
+                    name="mdActiveViewPosition"
+                    type="id"/>
+            </file>
+            <file
+                path="X:\AndroidProject\Seashell\menudrawer\res\values\strings.xml"
+                qualifiers="" >
+                <string name="md__drawerOpenIndicatorDesc" >Close drawer
+                </string>
+                <string name="md__drawerClosedIndicatorDesc" >Open drawer
+                </string>
+            </file>
+            <file
+                path="X:\AndroidProject\Seashell\menudrawer\res\values\styles.xml"
+                qualifiers="" >
+
+                <style name="Widget.MenuDrawer" >
+                    <item name="mdMenuBackground">
+@color/md__defaultBackground
+                    </item>
+                    <item name="mdContentBackground">
+?android:attr/windowBackground
+                    </item>
+                    <item name="mdDrawerOpenUpContentDescription">
+@string/md__drawerOpenIndicatorDesc
+                    </item>
+                    <item name="mdDrawerClosedUpContentDescription">
+@string/md__drawerClosedIndicatorDesc
+                    </item>
+                </style>
+
+                <style name="Widget" />
+            </file>
+        </source>
+        <source path="X:\AndroidProject\Seashell\menudrawer\build\generated\res\rs\debug" />
+        <source path="X:\AndroidProject\Seashell\menudrawer\build\generated\res\generated\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="X:\AndroidProject\Seashell\menudrawer\src\debug\res" />
+    </dataSet>
+
+</merger>

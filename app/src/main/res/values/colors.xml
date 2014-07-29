@@ -1,0 +1,11 @@
+<resources>
+
+    <color name="md__transparent">#00000000</color>
+
+    <color name="md__defaultBackground">#FF555555</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="main">#63C3FF</color>
+    <color name="actionbar_title_color">@android:color/white</color>
+</resources>

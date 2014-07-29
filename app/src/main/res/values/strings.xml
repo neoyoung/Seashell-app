@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">贝壳单词</string>
+    <string name="action_back">返回</string>
+    <string name="sample_bottommenu">Today:</string>
+    <string name="pulldown_scrollview">PulldownScrollView</string>
+    <string name="add_attention">刷新</string>
+    <string name="user_post">已更新 0 次单词</string>
+    <string name="user_book">详细浏览次数：x 次</string>
+    <string name="user_name">未登录</string>
+    <string name="user_des">“详细浏览率”越高，更新的频率越高，但最高不超过一天一次。</string>
+    <string name="user_recommend_tip">贝壳单词</string>
+    <string name="share_text">背单词的时候我就想，市面上单词APP做得再好，用户不愿打开就根本没用。于是，「贝壳单词」用完全不一样的方式，让你在无意识无压力之中轻松地增加词汇量，从此，就算大学的英语课不上了，也不必再担心英语日渐倒退，因为你每一天都在无意识之中稳步进行。下载地址：http://app.mi.com/detail/65475</string>
+    <string name="title_activity_about">关于</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="noboringactionbar_title">已背单词</string>
+
+</resources>

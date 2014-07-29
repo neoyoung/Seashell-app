@@ -1,0 +1,58 @@
+<!--
+android:gravity是对元素本身说的，元素本身的文本显示在什么地方靠着换个属性设置，不过不设置默认是在左侧的。
+android:layout_gravity是相对与它的父元素说的，说明元素显示在父元素的什么位置
+<LinearLayout android:id="@+id/LinearLayout01"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:gravity="center|center"
+             
+              android:orientation="vertical">
+-->
+
+
+<RelativeLayout android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:background="@drawable/splash_screen"
+    >
+    <!--
+    android:scaleType是控制图片如何resized/moved来匹对ImageView的size
+    CENTER_INSIDE / centerInside  将图片的内容完整居中显示，通过按比例缩小或原来的size使得图片长/宽等于或小于View的长/宽
+    -->
+    <!--
+    android:typeface 字体风格
+    -->
+    <!-- 咖啡厅密码 05926163133 
+
+    <ImageView
+        android:id="@+id/start_home_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/galaxy_s3" />
+        -->
+
+    <TextView
+        android:id="@+id/versionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:gravity="bottom"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:text="@+id/TextView01"
+        android:textColor="#444444"
+        android:textSize="13sp"
+        android:typeface="serif" />
+
+</RelativeLayout>
+
