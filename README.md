@@ -22,7 +22,7 @@ App store:
 我的博客：http://drakeet.me
 
 截图：
-<img src="/screenshots/s1.png alt=""  width="300" height="500" />
+<img src="https://github.com/drakeet/Seashell-app/blob/master/screenshots/s1.png alt=""  width="300" height="500" />
 <img src="/screenshots/s2.png alt=""  width="300" height="500" />
 <img src="/screenshots/s3.png alt=""  width="300" height="500" />
 <img src="/screenshots/s4.png alt=""  width="300" height="500" />
