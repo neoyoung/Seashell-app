@@ -14,6 +14,7 @@
 附上非应用商店的下载地址：
 
 http://drakeet.me/seashell.apk (非最新版，最新版还是去应用商店下载吧)
+
 App store:
 
 小米：http://app.mi.com/detail/65475
