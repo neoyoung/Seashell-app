@@ -1,3 +1,8 @@
+前言：
+这个app是我在大二下学期考试期间背单词的时候突发奇想并且花费了大概4天的时间做出来的，所以有很多地方可能写得不好，或者很多功能点没有写完，考虑到目前还有另外一些项目特别忙，于是将这个项目开源，特别欢迎和希望能够有人和我一起来有空完善它，前提是你喜欢它~，喜欢才能把一件事做好嘛:)
+
+以下内容来源于我的博客：http://drakeet.me/seashell-app
+
 背单词的时候我就想，百词斩做得再好，用户不愿意打开就根本没用，那怎么做一个好的背单词应用呢？
 
 我觉得只要常驻通知栏，【每天在通知栏显示一个单词就够了】，通知栏浏览率那么高，托QQ的福，每次顺便瞟一眼，背单词根本就是顺便且无意识无压力的事，一年好歹能记牢365个单词^ ^ 不行的话隔周复习，或两天一个也行。于是我花了两个早上的时间开发完成了这个毫无压力的背单词应用，贝壳单词，它保证你一年365天都能够非常轻松愉快地背单词。
@@ -17,4 +22,8 @@ App store:
 我的博客：http://drakeet.me
 
 截图：
-<img style="color: #000000;" src="http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/b258f176-257e-4cbf-bf28-838ee827d667" alt="贝壳单词" /><span style="color: #000000;"> </span><img style="color: #000000;" src="http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/2d69aca7-b96d-4838-b52a-04302cc16065" alt="贝壳单词" /><span style="color: #000000;"> </span><img style="color: #000000;" src="http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/20e2c045-a452-4c47-91ff-69ea528ae6a5" alt="贝壳单词" /><span style="color: #000000;"> </span><img style="color: #000000;" src="http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/115b8aa4-eb6b-48f7-9952-64b247fb3fdb" alt="贝壳单词" /><span style="color: #000000;"> </span><img style="color: #000000;" src="http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/ccff9cc0-84bd-4978-a55a-89c823851c1b" alt="贝壳单词" />
+![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/b258f176-257e-4cbf-bf28-838ee827d667)
+![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/2d69aca7-b96d-4838-b52a-04302cc16065)
+![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/20e2c045-a452-4c47-91ff-69ea528ae6a5)
+![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/115b8aa4-eb6b-48f7-9952-64b247fb3fdb)
+![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/ccff9cc0-84bd-4978-a55a-89c823851c1b)
