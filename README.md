@@ -22,8 +22,9 @@ App store:
 我的博客：http://drakeet.me
 
 截图：
-![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/b258f176-257e-4cbf-bf28-838ee827d667)
-![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/2d69aca7-b96d-4838-b52a-04302cc16065)
-![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/20e2c045-a452-4c47-91ff-69ea528ae6a5)
-![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/115b8aa4-eb6b-48f7-9952-64b247fb3fdb)
-![截图](http://file.market.xiaomi.com/thumbnail/jpeg/l395/AppStore/ccff9cc0-84bd-4978-a55a-89c823851c1b)
+![截图](/screenshots/s1.png)
+![截图](/screenshots/s2.png)
+![截图](/screenshots/s3.png)
+![截图](/screenshots/s4.png)
+![截图](/screenshots/s5.png)
+![截图](/screenshots/s6.png)
