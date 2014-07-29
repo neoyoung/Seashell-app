@@ -76,7 +76,7 @@
             android:autoLink="web"
             android:lineSpacingMultiplier="1.4"
             android:padding="10dp"
-            android:text="作者：drakeet\n联系：drakeet.me@gmail.com\n源代码：请期待...\n作者博客：http://drakeet.me" />
+            android:text="作者：drakeet\n联系：drakeet.me@gmail.com\n源代码：https://github.com/drakeet/Seashell-app\n作者博客：http://drakeet.me" />
     </RelativeLayout>
 
 </RelativeLayout>
