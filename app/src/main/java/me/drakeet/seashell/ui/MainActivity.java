@@ -37,7 +37,6 @@ import java.util.Map;
 import me.drakeet.seashell.model.Word;
 import me.drakeet.seashell.service.NotificatService;
 import me.drakeet.seashell.ui.notboringactionbar.NoBoringActionBarActivity;
-import me.drakeet.seashell.utils.HttpDownloader;
 import me.drakeet.seashell.utils.MySharedpreference;
 import me.drakeet.seashell.widget.PullScrollView;
 
@@ -66,7 +65,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     private List<String> mTitleList;
 
     private String mTimesSting;
-    private boolean mIsBind;
+    private boolean mIsBound;
     private NotificatService.LocalBinder mLocalBinder;
     private NotificatService mNotificatService;
 
@@ -83,6 +82,22 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         }
     };
 
+    // 链接activity和service之间的一个桥梁
+    public ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mIsBound = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mLocalBinder = (NotificatService.LocalBinder) service;
+            mNotificatService = mLocalBinder.getService();
+            mIsBound = true;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +109,15 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         serviceIntent = new Intent(this, NotificatService.class);
         //startService(serviceIntent);
         // 绑定service的服务
-        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+        bindService(serviceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mIsBound) {
+            this.unbindService(mServiceConnection);
+        }
     }
 
     protected void initView() {
@@ -191,21 +214,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         mTimesSting = "已更新 " + map2.get("honor") + " 次单词";
     }
 
-    // 链接activity和service之间的一个桥梁
-    public ServiceConnection serviceConnection = new ServiceConnection() {
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mIsBind = false;
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mLocalBinder = (NotificatService.LocalBinder) service;
-            mNotificatService = mLocalBinder.getService();
-            mIsBind = true;
-        }
-    };
 
     class MainViewPagerAdapter extends PagerAdapter {
 

@@ -12,6 +12,7 @@ import me.drakeet.seashell.utils.MySharedpreference;
 import me.drakeet.seashell.R;
 import me.drakeet.seashell.model.Word;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
