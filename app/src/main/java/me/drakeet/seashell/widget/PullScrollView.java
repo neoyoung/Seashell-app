@@ -14,6 +14,7 @@ import android.widget.ScrollView;
  *
  * @author MarkMjw
  * @date 2013-09-13
+ * drakeet 修改 doTouchEvent() 以解决bug。触摸事件处理 不能超过一半位置，不准上滑
  */
 public class PullScrollView extends ScrollView {
     /**
