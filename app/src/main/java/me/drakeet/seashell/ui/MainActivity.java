@@ -107,7 +107,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         initView();
 
         serviceIntent = new Intent(this, NotificatService.class);
-        //startService(serviceIntent);
+        startService(serviceIntent);
         // 绑定service的服务
         bindService(serviceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
@@ -213,7 +213,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         map2 = sharedpreference.getInfo();
         mTimesSting = "已更新 " + map2.get("honor") + " 次单词";
     }
-
 
 
     class MainViewPagerAdapter extends PagerAdapter {

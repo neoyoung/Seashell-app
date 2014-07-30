@@ -27,6 +27,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 
 public class NotificatService extends Service {
@@ -45,7 +46,6 @@ public class NotificatService extends Service {
 
     @Override
     public IBinder onBind(Intent arg0) {
-        onStartCommand(arg0, 1, 1);
         return localBinder;
     }
 
@@ -95,6 +95,7 @@ public class NotificatService extends Service {
                     }
 
                     try {
+                        Log.i("Seashell-->", "runing");
                         Thread.sleep(120 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
