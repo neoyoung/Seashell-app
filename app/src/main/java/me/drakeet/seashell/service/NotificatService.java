@@ -176,40 +176,18 @@ public class NotificatService extends Service {
             notifyBuilder.setContentText(mWord.getSpeech() + " "
                     + mWord.getExplanation());
         }
-
-        // 如果不设置LargeIcon，那么系统会默认将上面的SmallIcon显示在通知选项的最左侧，右下角的小图标将不再显示
-        // Bitmap bitmap =
-        // BitmapFactory.decodeResource(getResources(),R.drawable.bigicon);
-        // notifyBuilder.setLargeIcon(bitmap);
         // 这里用来显示右下角的数字
         notifyBuilder.setWhen(System.currentTimeMillis());
-
-        // Intent deleteIntent = new Intent(this, MainActivity.class);
-        // int deleteCode = (int) SystemClock.uptimeMillis();
-        // PendingIntent deletePendingIntent = PendingIntent.getActivity(this,
-        // deleteCode, deleteIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        // notifyBuilder.setDeleteIntent(deletePendingIntent);
-
         Intent notifyIntent = new Intent(this, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         // stackBuilder.addParentStack(NilActivity.class);
         stackBuilder.addNextIntent(notifyIntent);
-        // 当设置下面PendingIntent.FLAG_UPDATE_CURRENT这个参数的时候，常常使得点击通知栏没效果，你需要给notification设置一个独一无二的requestCode
+        // 给notification设置一个独一无二的requestCode
         int requestCode = (int) SystemClock.uptimeMillis();
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
                 requestCode, PendingIntent.FLAG_UPDATE_CURRENT);
         notifyBuilder.setContentIntent(resultPendingIntent);
-
-        // 将AutoCancel设为true后，当你点击通知栏的notification后，它会自动被取消消失
-        // //notifyBuilder.setAutoCancel(true);
-        // 从Android4.1开始，可以通过以下方法，设置notification的优先级，优先级越高的，通知排的越靠前，优先级低的，不会在手机最顶部的状态栏显示图标
         notifyBuilder.setPriority(NotificationCompat.PRIORITY_MIN);
-        // notifyBuilder.setPriority(NotificationCompat.PRIORITY_MIN);
-
-        // Uri uri =
-        // Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.cat);
-        // Uri uri = Uri.parse("file:///mnt/sdcard/cat.mp3");
-        // notifyBuilder.setSound(uri);
         notifyBuilder.setOngoing(true);
         long[] vibrate = {0, 50, 0, 0};
         notifyBuilder.setVibrate(vibrate);
