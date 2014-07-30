@@ -1,10 +1,15 @@
 package me.drakeet.seashell.ui;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcel;
+import android.os.RemoteException;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
@@ -50,11 +55,9 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     private int MENU_SETTING;
     private Intent serviceIntent;
     public static Word mTodayWord;
-    private Word mYesterdayWord;
-
+    private static Word mYesterdayWord;
     private PullScrollView mScrollView;
     private ImageView mHeadImg;
-
     private TableLayout mMainLayout;
     private ViewPager mMainViewPager;
     private PagerTitleStrip mPagerTitleStrip;
@@ -63,19 +66,19 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     private List<String> mTitleList;
 
     private String mTimesSting;
+    private boolean mIsBind;
+    private NotificatService.LocalBinder mLocalBinder;
+    private NotificatService mNotificatService;
 
-    private Handler handler = new Handler() {
+    public static Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            String s = (String) msg.obj;
-            mTodayWord = new Gson().fromJson(s, Word.class);
+            mTodayWord = (Word) msg.obj;
             if (mTodayWord != null) {
                 mTodayContentTextView.setText(mTodayWord.getWord()
                         + "  " + mTodayWord.getPhonetic() + "\n"
                         + mTodayWord.getSpeech() + "\n" + mTodayWord.getExplanation()
                         + "\n" + mTodayWord.getExample());
-                Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
-
             }
         }
     };
@@ -87,10 +90,11 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
 
         initWord();
         initView();
-        //showTable();
 
         serviceIntent = new Intent(this, NotificatService.class);
-        startService(serviceIntent);
+        //startService(serviceIntent);
+        // 绑定service的服务
+        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     protected void initView() {
@@ -99,7 +103,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
 
         //mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);//全屏可滑动
         mMenuDrawer.setContentView(R.layout.act_pull_down);
-        //mMenuDrawer.setMenuView(R.layout.menu_bottom);
 
         mScrollView = (PullScrollView) findViewById(R.id.scroll_view);
         mHeadImg = (ImageView) findViewById(R.id.background_img);
@@ -145,7 +148,7 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
+                initWord();
                 if (position == 0 && mYesterdayWord != null) {
                     mYesterdayContentTextView.setText(mYesterdayWord.getWord()
                             + "  " + mYesterdayWord.getPhonetic() + "\n"
@@ -170,12 +173,14 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         }
     }
 
+    //更新单词数据
     private void initWord() {
         Map<String, String> map;
         Gson gson = new Gson();
         Context context = getApplicationContext();
         MySharedpreference sharedpreference = new MySharedpreference(context);
         map = sharedpreference.getWordJson();
+        //取出
         String todayGsonString = map.get("today_json");
         String yesterdayGsonString = map.get("yesterday_json");
         mTodayWord = gson.fromJson(todayGsonString, Word.class);
@@ -185,6 +190,22 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         map2 = sharedpreference.getInfo();
         mTimesSting = "已更新 " + map2.get("honor") + " 次单词";
     }
+
+    // 链接activity和service之间的一个桥梁
+    public ServiceConnection serviceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mIsBind = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mLocalBinder = (NotificatService.LocalBinder) service;
+            mNotificatService = mLocalBinder.getService();
+            mIsBind = true;
+        }
+    };
 
     class MainViewPagerAdapter extends PagerAdapter {
 
@@ -220,7 +241,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams
                 .MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
-
     }
 
     @Override
@@ -229,19 +249,21 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
     }
 
     public void onRefreshClick(View view) {
-        new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                String refreshJson = new HttpDownloader()
-                        .download("http://test.drakeet.me/?key=seashell2");
-                if (refreshJson.isEmpty() == false) {
-                    Message msg = Message.obtain();
-                    msg.obj = refreshJson;
-                    handler.sendMessage(msg);
-                }
-            }
-        }).start();
+        // 往Service中传递值的对象，到Service中去处理
+        Parcel data = Parcel.obtain();
+        data.writeInt(199);
+        Parcel reply = Parcel.obtain();
+        try {
+            mLocalBinder.transact(IBinder.LAST_CALL_TRANSACTION, data,
+                    reply, 0);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        if (reply.readInt() == 200) {
+            Toast.makeText(getApplicationContext(), "更新成功", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     // 键盘按键响应监听，主要监听了munu按键，用于弹出菜单
@@ -269,7 +291,6 @@ public class MainActivity extends BaseListSample implements PullScrollView.OnTur
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(Intent.createChooser(intent, getTitle()));
-
     }
 
     @Override

@@ -18,38 +18,56 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Parcel;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-//import android.app.TaskStackBuilder;
 
 
 public class NotificatService extends Service {
 
     private Word mWord;
 
-    public static boolean isStop = false;
     public static boolean isRun = false;
     static long firstTime;
-    boolean timeIsFirst = true;
     Thread thread;
-
     private volatile boolean stopRequested;
-
-    long now;
-    boolean isFirst = true;
     boolean isFirst2 = true;
-    protected long lastTime;
     private int NOTIFY_ID = 524947901;
-
     private String mTodayGsonString;
     private String mYesterdayGsonString;
+    private LocalBinder localBinder = new LocalBinder();
 
     @Override
     public IBinder onBind(Intent arg0) {
-        // TODO Auto-generated method stub
-        return null;
+        onStartCommand(arg0, 1, 1);
+        return localBinder;
+    }
+
+    public class LocalBinder extends Binder {
+        public NotificatService getService() {
+            return NotificatService.this;
+        }
+
+        @Override
+        protected boolean onTransact(int code, Parcel data, Parcel reply,
+                                     int flags) throws RemoteException {
+            //表示从activity中获取数值
+            if (data.readInt() == 199) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startN();
+                    }
+                }).start();
+                reply.writeInt(200);
+            }
+            return super.onTransact(code, data, reply, flags);
+        }
     }
 
     @Override
@@ -62,7 +80,6 @@ public class NotificatService extends Service {
                 Date date = new Date();
 
                 while (stopRequested == false) {
-                    // 第1次安装使用的时候，直接马上显示一次通知
                     if (isFirst2) {
                         firstTime = date.getDate();
                         startN();
@@ -74,13 +91,11 @@ public class NotificatService extends Service {
                     if (currentTime != firstTime) {
                         startN();
                         firstTime = currentTime;
-
                     }
 
                     try {
                         Thread.sleep(120 * 1000);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
@@ -123,16 +138,9 @@ public class NotificatService extends Service {
         normalRegular();
         try {
             if (mWord != null) {
-                MainActivity.mTodayContentTextView.post(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        MainActivity.mTodayContentTextView.setText(mWord.getWord()
-                                + "  " + mWord.getPhonetic() + "\n"
-                                + mWord.getSpeech() + "\n" + mWord.getExplanation()
-                                + "\n" + mWord.getExample());
-                    }
-                });
+                Message message = Message.obtain();
+                message.obj = mWord;
+                MainActivity.handler.sendMessage(message);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +155,6 @@ public class NotificatService extends Service {
         changeNewAndOldWord();
         sharedpreference.saveTodayJson(mTodayGsonString);
         MainActivity.mTodayWord = mWord;
-
     }
 
     private void normalRegular() {
